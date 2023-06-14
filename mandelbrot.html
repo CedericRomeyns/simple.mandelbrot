@@ -1,0 +1,30 @@
+<html>
+<canvas id= "mandelbrot" width="1000" height="1000"></canvasid> 
+<script>
+
+    m = document.getElementById("mandelbrot").getContext("2d")
+
+    atom = function(x,y,c){m.fillStyle=c; m.fillRect(x,y,3,3)}
+
+    for(y=1; y<1000; y++){
+    for(x=1; x<1000; x++){
+    // change these falues to change the patern
+        dx = (x-500)/100000-0.233
+        dy = (y-500)/100000-0.655
+        a = dx
+        b = dy
+    // change these falues to change the rendering
+        for(t=2; t<2000; t++){
+    d = (a*a)-(b*b)+dx
+    b = 2*(a*b)+dy
+    a = d
+    H = d>200
+    // used to change the color
+    red = (Math.sin((t-153)/20)+1)/2
+    green = (Math.sin((t-255)/20)+1)/2
+    blue = (Math.sin((t-255)/20)+1)/2
+    if(H){atom(x,y,"rgb(" + t*red + "," + t*green + "," + t*blue + ")"); break}
+
+    }}}
+</script>
+</html>
